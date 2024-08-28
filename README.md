@@ -138,3 +138,21 @@ Configs can be found inside the `pyproject.toml` file.
    ```
    poetry run isort .
    ```
+---
+## Database schema
+## Tables and Indexes
+
+### Key Relationships
+![img.png](uml.png)
+1. CUSTOMER to ORDER: One-to-Many
+   2. Each customer can have multiple orders.
+
+2. ORDER to BARCODE: One-to-Many 
+   3. Each order can have multiple barcodes.
+
+3. CUSTOMER to BARCODE: One-to-Many (Indirect through ORDER)
+
+### Indexes
+PKs are automatically indexed in Postgres. I would also recommend adding indexes on the following columns:
+1. `customer_id` in the `orders` table
+2. `order_id` in the `barcodes` table
