@@ -28,9 +28,6 @@ jobs:
       - name: Lint with ruff
         run: |
           poetry run ruff check .
-      - name: Lint with flake8
-        run: |
-          poetry run flake8 .
       - name: Check imports with isort
         run: |
           poetry run isort . --check-only
