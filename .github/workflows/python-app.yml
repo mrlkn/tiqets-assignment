@@ -1,4 +1,4 @@
-name: Python application
+name: Tiqets Assignment
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build-and-test:
 
     runs-on: ubuntu-latest
 
@@ -24,13 +24,33 @@ jobs:
           poetry install
       - name: Run tests
         run: |
-          poetry run python -m unittest discover src/tests
+          poetry run python -m unittest discover tests
       - name: Lint with ruff
         run: |
           poetry run ruff check .
+      - name: Lint with flake8
+        run: |
+          poetry run flake8 .
       - name: Check imports with isort
         run: |
           poetry run isort . --check-only
       - name: Build Docker image
         run: |
-          docker build . --file Dockerfile --tag tiqets-assignments:$(date +%s)
+          docker build . --file Dockerfile --tag tiqets-assignment:latest
+      - name: Run application in Docker container
+        run: |
+          mkdir -p output
+          docker run tiqets-assignment:latest run data/orders.csv data/barcodes.csv output/result.csv
+          
+          if [ -f output/result.csv ]; then
+            echo "Application ran successfully and produced output."
+            cat output/result.csv
+          else
+            echo "Application failed to produce output file."
+            exit 1
+          fi
+      - name: Upload output as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: process-result
+          path: output/result.csv
