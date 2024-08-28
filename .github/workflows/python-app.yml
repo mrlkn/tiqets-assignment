@@ -24,7 +24,7 @@ jobs:
           poetry install
       - name: Run tests
         run: |
-          poetry run python -m unittest discover tests
+          poetry run python -m unittest discover src/tests
       - name: Lint with ruff
         run: |
           poetry run ruff check .
