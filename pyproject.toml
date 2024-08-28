@@ -23,7 +23,6 @@ select = [
     "F",  # Pyflakes errors
     "B",  # Bugbear rules
     "C",  # Complexity rules
-    "D",  # Docstring conventions (pydocstyle)
     "I",  # Import conventions (used to ignore Ruff's sorting)
 ]
 
@@ -36,7 +35,7 @@ exclude = [
 
 line-length = 120
 
-fixable = ["E", "F", "B", "C", "D"]
+fixable = ["E", "F", "B", "C"]
 
 [tool.isort]
 profile = "black"

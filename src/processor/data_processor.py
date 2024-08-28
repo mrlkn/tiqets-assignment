@@ -181,7 +181,7 @@ class DataProcessor:
 
     def _count_unused_barcodes(self, barcodes: List[Barcode]) -> int:
         """
-        Count the number of unused barcodes in the list of Barcode objects and subtract the number of duplicate barcodes.
+        Count the number of unused barcodes in the list of Barcode objects and subtract the number of duplicate barcodes
 
         Args:
             barcodes (List[Barcode]): List of Barcode objects.
