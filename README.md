@@ -1,9 +1,41 @@
+[![Tiqets Assignment](https://github.com/mrlkn/tiqets-assignment/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/mrlkn/tiqets-assignment/actions/workflows/python-app.yml)
+
 # Tiqets Assignment
 
 This application reads CSV for order and barcode data, then processes & validates this data (relying on Pydantic) to generate customer orders and their associated barcodes. It also provides analysis on top customers and unused barcodes.
 
+## CI/CD
 
-## Docker Installation
+Project uses GitHub Actions for continuous integration and testing. On every push and pull request to the master branch, the following steps are automatically performed:
+
+1. Unit tests are run
+2. Code is linted with ruff
+3. Import order is checked with isort
+4. A Docker image is built
+5. The application is run inside a Docker container using the data files in the `data/` directory
+6. The output is verified and uploaded as an artifact
+
+`You can see the status of these checks on the GitHub repository page, in the "Actions" tab.`
+
+### CI/CD Process Details
+
+1. **Testing and Linting**: Ensures code quality and functionality.
+2. **Docker Build**: Verifies that the application can be containerized successfully.
+3. **Application Run**: Uses the data files by default (`data/orders.csv` and `data/barcodes.csv`) to run the application in a Docker container.
+4. **Output Verification**: Checks that the application produces the expected output file in the `output/` directory.
+5. **Artifact Upload**: The output file is uploaded as an artifact, allowing for easy inspection of the results.
+
+### Accessing CI/CD Artifacts
+
+After each workflow run, you can download the processed output file:
+
+1. Go to the "Actions" tab in the GitHub repository.
+2. Click on the latest workflow run.
+3. Scroll down to the "Artifacts" section.
+4. Download the "process-result" artifact to view the output CSV file.
+
+
+## Docker build
 
 1. Make sure you have docker installed in your system.
 2. Build the Docker image:
@@ -12,7 +44,6 @@ This application reads CSV for order and barcode data, then processes & validate
    ```
 
 # Usage
-
 
 
 ### Docker Usage
