@@ -145,10 +145,10 @@ Configs can be found inside the `pyproject.toml` file.
 ### Key Relationships
 ![img.png](uml.png)
 1. CUSTOMER to ORDER: One-to-Many
-   2. Each customer can have multiple orders.
+   Each customer can have multiple orders.
 
 2. ORDER to BARCODE: One-to-Many 
-   3. Each order can have multiple barcodes.
+   Each order can have multiple barcodes.
 
 3. CUSTOMER to BARCODE: One-to-Many (Indirect through ORDER)
 
